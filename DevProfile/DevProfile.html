@@ -1,0 +1,66 @@
+<html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">		
+    <head>
+			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+			<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<style type="text/css">
+#example2{
+    color:#90c070;
+    display:block;
+font-family:'Commodore';
+font-size:1.2em;
+background-color:#000000;
+color:#90c070;
+overflow:hidden;
+line-height:3em;
+height:4em;
+padding:0.7em;
+text-shadow:0 0 0.2em #90c070;
+}
+
+</style>
+<script  type="text/javascript">
+function AnimatedText(target,texts,changeInterval,updateInterval,onTextChanged){
+var texts = ["01000001 01100010 01101000 01101001 01101010 01101001 01110100 01101000 00100000 01001011 01110101 01110010 01101001 01100001 01101110","Abhijith Kurian"];
+var target = document.getElementById("example2");
+
+    var currentText=parseInt(Math.random()*texts.length);
+	var areaText=texts[0];
+	this.t1=setInterval(function(){
+		var c=parseInt(Math.random()*Math.max(texts[currentText].length,areaText.length));
+		var s=texts[currentText][c];
+		if(typeof s == 'undefined') s=" ";
+		while(areaText.length<c) areaText+=" ";
+		var newText=(areaText.slice(0,c)+s+areaText.slice(c+1)).trim();
+		var diff=!(newText==areaText);
+		areaText=newText;
+		if(onTextChanged&&diff) onTextChanged();
+		target.innerHTML=areaText.length==0?"&nbsp;":areaText;
+	}.bind(this),updateInterval?updateInterval:1);
+	this.t2=setInterval(function(){
+		currentText=parseInt(Math.random()*texts.length);
+	}.bind(this),changeInterval?changeInterval:4000);
+}
+AnimatedText.prototype={
+	constructor:AnimatedText,
+	stop:function(){clearInterval(this.t1);clearInterval(this.t2);}
+};
+window.onload = function() {
+	AnimatedText();
+};
+
+</script>
+</head>
+<body style="background-color:black;">
+	<div style="align-content:right; width: 100%;"><img src="C:\Users\Abhi\Pictures\cvpicheadeer\1.jpg" 
+		style="height:100px; width:100px; align-self: flex-end;"/></div>
+<div class="container" id="example2" style="text-align: center; background-color:black;">
+</div>
+</body>
+</html>
+
+
+
